@@ -81,11 +81,14 @@ public class RobotContainer {
     // controller. The Y axis of the controller is inverted so that pushing the
     // stick away from you (a negative value) drives the robot forwards (a positive
     // value). Similarly for the X axis where we need to flip the value so the
-    // joystick matches the WPILib convention of counter-clockwise positive
+    // joystick matches the WPILib convention of counter-clockwise positive.
+    // Pressing right bumper allows for full speed motion. Otherwise, the drivetrain
+    // operates at half speed.
     driveSubsystem.setDefaultCommand(new DriveCommand(
         () -> -driverController.getLeftY() *
-            (driverController.getHID().getRightBumperButton() ? 1 : 0.5),
-        () -> -driverController.getRightX(),
+            (driverController.getHID().getRightBumperButton() ? -1 : -0.5),
+        () -> -driverController.getRightX() *
+            (driverController.getHID().getRightBumperButton() ? -1 : -0.5),
         driveSubsystem));
 
     // Set the default command for the roller subsystem to an instance of
