@@ -76,6 +76,9 @@ public class RobotContainer {
     driverController.a()
         .whileTrue(new RollerCommand(() -> RollerConstants.ROLLER_EJECT_VALUE, () -> 0, rollerSubsystem));
 
+    driverController.x()
+        .whileTrue(new RollerCommand(() -> RollerConstants.ROLLER_EJECT_FAST_VALUE, () -> 0, rollerSubsystem));
+
     // Set the default command for the drive subsystem to an instance of the
     // DriveCommand with the values provided by the joystick axes on the driver
     // controller. The Y axis of the controller is inverted so that pushing the
@@ -86,9 +89,9 @@ public class RobotContainer {
     // operates at half speed.
     driveSubsystem.setDefaultCommand(new DriveCommand(
         () -> -driverController.getLeftY() *
-            (driverController.getHID().getRightBumperButton() ? -1 : -0.5),
+            (driverController.getHID().getRightBumperButton() ? -0.7 : -0.5),
         () -> -driverController.getRightX() *
-            (driverController.getHID().getRightBumperButton() ? -1 : -0.5),
+            (driverController.getHID().getRightBumperButton() ? -1 : -0.6),
         driveSubsystem));
 
     // Set the default command for the roller subsystem to an instance of
