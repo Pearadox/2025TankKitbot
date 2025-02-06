@@ -6,6 +6,8 @@ import frc.robot.Constants.RollerConstants;
 import frc.robot.subsystems.CANDriveSubsystem;
 import frc.robot.subsystems.CANRollerSubsystem;
 
+// This auton has NOT been tested!
+
 public class SimpleCoralAuton extends Command {
     // Defining 
 
