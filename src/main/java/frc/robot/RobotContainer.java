@@ -55,6 +55,8 @@ public class RobotContainer {
     // Set the options to show up in the Dashboard for selecting auto modes. If you
     // add additional auto modes you can add additional lines here with
     // autoChooser.addOption
+
+    // This auton hasn NOT been tested!
     autoChooser.setDefaultOption("Simple Coral Auton", m_simpleCoralAuton);
     SmartDashboard.putData(autoChooser);
 
