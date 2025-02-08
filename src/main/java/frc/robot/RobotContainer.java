@@ -81,27 +81,33 @@ public class RobotContainer {
     // value ejecting the gamepiece while the button is held
 
     // before
-    operatorController.a()
+    driverController.a()
         .whileTrue(new RollerCommand(() -> RollerConstants.ROLLER_EJECT_VALUE, () -> 0, rollerSubsystem));
+
+    driverController.x()
+        .whileTrue(new RollerCommand(() -> RollerConstants.ROLLER_EJECT_FAST_VALUE, () -> 0, rollerSubsystem));
 
     // Set the default command for the drive subsystem to an instance of the
     // DriveCommand with the values provided by the joystick axes on the driver
     // controller. The Y axis of the controller is inverted so that pushing the
     // stick away from you (a negative value) drives the robot forwards (a positive
     // value). Similarly for the X axis where we need to flip the value so the
-    // joystick matches the WPILib convention of counter-clockwise positive
+    // joystick matches the WPILib convention of counter-clockwise positive.
+    // Pressing right bumper allows for full speed motion. Otherwise, the drivetrain
+    // operates at half speed.
     driveSubsystem.setDefaultCommand(new DriveCommand(
         () -> -driverController.getLeftY() *
-            (driverController.getHID().getRightBumperButton() ? 1 : 0.5),
-        () -> -driverController.getRightX(),
+            (driverController.getHID().getRightBumperButton() ? -0.7 : -0.5),
+        () -> -driverController.getRightX() *
+            (driverController.getHID().getRightBumperButton() ? -1 : -0.6),
         driveSubsystem));
 
     // Set the default command for the roller subsystem to an instance of
     // RollerCommand with the values provided by the triggers on the operator
     // controller
     rollerSubsystem.setDefaultCommand(new RollerCommand(
-        () -> operatorController.getRightTriggerAxis(),
-        () -> operatorController.getLeftTriggerAxis(),
+        () -> driverController.getRightTriggerAxis(),
+        () -> driverController.getLeftTriggerAxis(),
         rollerSubsystem));
   }
 

@@ -11,6 +11,7 @@ import com.revrobotics.spark.SparkMax;
 import com.revrobotics.spark.config.SparkMaxConfig;
 
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.DriveConstants;
 
@@ -24,11 +25,11 @@ public class CANDriveSubsystem extends SubsystemBase {
   private final DifferentialDrive drive;
 
   public CANDriveSubsystem() {
-    // create brushed motors for drive
-    leftLeader = new SparkMax(DriveConstants.LEFT_LEADER_ID, MotorType.kBrushed);
-    leftFollower = new SparkMax(DriveConstants.LEFT_FOLLOWER_ID, MotorType.kBrushed);
-    rightLeader = new SparkMax(DriveConstants.RIGHT_LEADER_ID, MotorType.kBrushed);
-    rightFollower = new SparkMax(DriveConstants.RIGHT_FOLLOWER_ID, MotorType.kBrushed);
+    // create brushless motors for drive
+    leftLeader = new SparkMax(DriveConstants.LEFT_LEADER_ID, MotorType.kBrushless);
+    leftFollower = new SparkMax(DriveConstants.LEFT_FOLLOWER_ID, MotorType.kBrushless);
+    rightLeader = new SparkMax(DriveConstants.RIGHT_LEADER_ID, MotorType.kBrushless);
+    rightFollower = new SparkMax(DriveConstants.RIGHT_FOLLOWER_ID, MotorType.kBrushless);
 
     // set up differential drive class
     drive = new DifferentialDrive(leftLeader, rightLeader);
@@ -73,6 +74,9 @@ public class CANDriveSubsystem extends SubsystemBase {
 
   // sets the speed of the drive motors
   public void driveArcade(double xSpeed, double zRotation) {
+    SmartDashboard.putNumber("speed",xSpeed);
+    SmartDashboard.putNumber("left", leftLeader.getAppliedOutput());
+    SmartDashboard.putNumber("right", rightLeader.getAppliedOutput());
     drive.arcadeDrive(xSpeed, zRotation);
   }
 }
