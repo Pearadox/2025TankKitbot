@@ -32,6 +32,7 @@ public class CANRollerSubsystem extends SubsystemBase {
     SparkMaxConfig rollerConfig = new SparkMaxConfig();
     rollerConfig.voltageCompensation(RollerConstants.ROLLER_MOTOR_VOLTAGE_COMP);
     rollerConfig.smartCurrentLimit(RollerConstants.ROLLER_MOTOR_CURRENT_LIMIT);
+    rollerConfig.inverted(false);
     rollerMotor.configure(rollerConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
   }
 

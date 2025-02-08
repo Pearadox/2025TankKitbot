@@ -14,8 +14,8 @@ public class SimpleCoralAuton extends Command {
     private CANDriveSubsystem m_drive;
     private CANRollerSubsystem m_roller;
     private Timer m_timer;
-    private double drive_time_threshold = 3.25;
-    private double eject_time_threshold = 4.5;
+    private double drive_time_threshold = 2.75;
+    private double eject_time_threshold = 3.75;
 
     // This auton will make it drive forward for 3.25 seconds (adjustable) and then eject coral into L1
 
