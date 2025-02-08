@@ -47,12 +47,12 @@ public class SimpleCoralAuton extends Command {
 
         if (m_timer.get() < drive_time_threshold) {
 
-            m_drive.driveArcade(0.5, 0);
+            m_drive.driveArcade(-0.5, 0);
 
         } else if (m_timer.get() > drive_time_threshold && m_timer.get() < eject_time_threshold) {
 
             m_drive.driveArcade(0.0, 0);
-            m_roller.runRoller(RollerConstants.ROLLER_EJECT_VALUE, 0);
+            m_roller.runRoller(-RollerConstants.ROLLER_EJECT_VALUE, 0);
 
         }
     }
